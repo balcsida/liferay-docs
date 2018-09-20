@@ -18,28 +18,28 @@ the core theme files are the same.
 - `theme-name/`
     - `src/`
         - `css/`
-            - [`_clay_custom.scss`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#claycustom-scss)
-            - [`_clay_variables.scss`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#auivariables-scss)
-            - [`_custom.scss`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#custom-scss)
-            - [`_liferay_variables_custom.scss`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#liferayvariablescustom-scss)
+            - [`_clay_custom.scss`](#claycustom-scss)
+            - [`_clay_variables.scss`](#auivariables-scss)
+            - [`_custom.scss`](#custom-scss)
+            - [`_liferay_variables_custom.scss`](#liferayvariablescustom-scss)
         - `images/`
             -   (custom images)
         - `js/`
-            - [`main.js`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#main-js)
+            - [`main.js`](#main-js)
         - `templates/`
-            - [`init_custom.ftl`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#initcustom-ftl)
-            - [`navigation.ftl`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#navigation-ftl)
-            - [`portal_normal.ftl`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#portalnormal-ftl)
-            - [`portal_pop_up.ftl`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#portalpopup-ftl)
-            - [`portlet.ftl`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#portlet-ftl)
+            - [`init_custom.ftl`](#initcustom-ftl)
+            - [`navigation.ftl`](#navigation-ftl)
+            - [`portal_normal.ftl`](#portalnormal-ftl)
+            - [`portal_pop_up.ftl`](#portalpopup-ftl)
+            - [`portlet.ftl`](#portlet-ftl)
         - `WEB-INF/`
-            - [`liferay-look-and-feel.xml`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#liferay-look-and-feel-xml)
-            - [`liferay-plugin-package.properties`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#liferay-plugin-package-properties)
+            - [`liferay-look-and-feel.xml`](#liferay-look-and-feel-xml)
+            - [`liferay-plugin-package.properties`](#liferay-plugin-package-properties)
             - `src/`
                 - `resources-importer/`
                     - (Many directories)
-    - [`liferay-theme.json`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#liferay-theme-json)
-    - [`package.json`](/develop/reference/-/knowledge_base/7-1/theme-reference-guide#package-json)
+    - [`liferay-theme.json`](#liferay-theme-json)
+    - [`package.json`](#package-json)
  
 Regarding CSS files, you should only modify `_clay_custom.scss`,
 `_clay_variables.scss`, `_custom.scss`, and `_liferay_variables_custom.scss`.
