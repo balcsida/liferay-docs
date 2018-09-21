@@ -22,9 +22,11 @@ Installing @product@ manually requires these basic steps:
 
 +$$$
 
-**Note:** You'll see the term *Liferay Home* used in this installation guide.
-*Liferay Home* refers to the folder containing your tc Server instance and some
-@product@-specific folders:. `data`, `deploy`, `licenses`, and `osgi` folders. 
+**Note:** You'll see the term
+[*Liferay Home*](/discover/deployment/-/knowledge_base/7-0/installing-product#liferay-home)
+used in this installation guide. *Liferay Home* refers to the folder containing
+your tc Server instance and some @product@-specific folders:. `data`, `deploy`,
+`licenses`, and `osgi` folders. 
 
 $$$
 
@@ -308,7 +310,7 @@ Before you deploy @product@, you should configure a Portal Access Control List
 
 ## Enabling PACL [](id=enabling-pacl)
 
-To enable PACL, you need to enable Tomcat’s security manager. Make sure
+To enable PACL, you need to enable Tomcat's security manager. Make sure
 `[TCSERVER_INSTANCE_HOME]/servers/dxp-server/conf/catalina.policy` specifies the permissions
 
     grant {

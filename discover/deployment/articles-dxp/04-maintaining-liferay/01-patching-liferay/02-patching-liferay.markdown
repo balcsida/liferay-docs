@@ -37,10 +37,11 @@ a patch.
 
 Liferay distributes patches as `.zip` files, whether they are hotfixes or fix
 packs. When you receive one, either via a LESA ticket (hotfix) or through
-downloading a fix pack from the [Customer Portal](https://web.liferay.com/group/customer), 
-place it in the `patches` folder that's inside the Patching Tool's home
-folder. Once you've done that, it's a simple matter to install it. First,
-execute
+downloading a fix pack from the
+[Customer Portal](https://web.liferay.com/group/customer), 
+place it in the Patching Tool's `patches` folder (e.g., `[Liferay
+Home]/patching-tool/patches`) without unzipping it. Once you've done that, it's
+a simple matter to install it. First, execute
 
     patching-tool info
  
@@ -52,10 +53,27 @@ issue the following command:
 
     patching-tool install
 
+To make sure the all changed OSGi bundles replace the existing ones, it is
+recommended to delete the `osgi/state` folder from the
+[Liferay Home folder](/discover/deployment/-/knowledge_base/7-0/installing-product#liferay-home). 
+
 +$$$
 
-**Note:** After a successful patch installation you must delete the *osgi/state*
-folder if it exists in your Liferay Home directory.
+**Important**: The `osgi/state` folder should ONLY be deleted when working in a 
+development environment or when applying a fix pack or hot fix. 
+
+$$$
+
++$$$
+
+**Note**: The `osgi/state` folder in the contains OSGi bundle state information.
+If an OSGi bundle's changes in a hot fix or fix pack are internal only and are,
+therefore, invisible to the OSGi framework, that OSGi bundle stays installed and
+its state information stays unchanged. Hot fixes, for example, may contain
+in-place changes that do not use the API---the framework cannot detect such
+changes. A fix pack's changes may also be transparent to the framework. For
+these reasons, deleting the `osgi/state` folder after applying fix packs and hot
+fixes is recommended. 
 
 $$$
 
@@ -89,7 +107,15 @@ $$$
 During the installation, `patching-backup-deps.zip` and `patching-backup.zip`
 files are created and stored in the `ROOT/WEB-INF` folder. These files are
 necessary to restore the @product@'s original state; removing them would disable
-further patching.
+further patching. 
+
++$$$
+
+**Note:** When installing patches, @product@'s `web.xml` is always overwritten
+by the one contained in the patch. If you've customized `web.xml`, you must
+re-implement your customizations after installing a patch. 
+
+$$$
 
 The `patching-backup.zip` file is necessary for installing future patches,
 because the Patching Tool reverts the installed fix pack before installing a new
@@ -146,8 +172,9 @@ you don't want, remove it from the `patches` folder. When you run the
 If you want to remove all patches you've installed, use the `./patching-tool.sh
 revert` command. This removes all patches from your installation.
 
-The OSGi state folder may contain obsolete bundles in its cache that must be
-removed. If it exists, delete the *osgi/state* folder in Liferay Home.
+Prior to Fix Pack 13, the OSGi state folder could retain obsolete bundles in
+its cache. If you're running a version prior to Fix Pack 13, delete the
+*osgi/state* folder in Liferay Home.
 
 ## Cleaning Up [](id=cleaning-up)
 
@@ -186,7 +213,7 @@ the "diff" command. This command has four options:
 
 For detailed usage information, run `patching-tool help store`.
 
-## Separating the Patches from the @product@ Installation
+## Separating the Patches from the @product@ Installation [](id=separating-the-patches-from-the-product-installation)
 
 As of Patching Tool 2.0.6, there's a feature that helps reduce the patched
 @product@ bundle size. If the bundle has been patched, you can make it smaller
@@ -214,6 +241,7 @@ size smaller.
 cannot run most of the Patching Tool commands until the patches are restored.
 
 After the separation process only the following commands can be used:
+
 - auto-discovery
 - info
 - setup
@@ -226,7 +254,7 @@ Any other command returns this:
  
 This is how you restore the patch files to your system. Details below. 
 
- ### Restoring the Separated Patch Files
+### Restoring the Separated Patch Files [](id=restoring-the-separated-patch-files)
  
 When you need to patch @product@ again, you must restore the
 separated patch artifact. To do this, copy the

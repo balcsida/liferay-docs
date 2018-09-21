@@ -413,9 +413,9 @@ The `FooLocalService` interface in the API module contains these methods:
 
 The `FooLocalServiceBaseImpl` class in the service module implements each of
 these methods. See
-[here](https://github.com/liferay/liferay-blade-samples/blob/master/gradle/apps/service-builder/foo-api/src/main/java/com/liferay/blade/samples/servicebuilder/service/FooLocalService.java#L156-L166)
+[here](https://github.com/liferay/liferay-blade-samples/blob/master/gradle/apps/service-builder/basic/basic-api/src/main/java/com/liferay/blade/samples/servicebuilder/service/FooLocalService.java#L156-L166)
 and
-[here](https://github.com/liferay/liferay-blade-samples/blob/master/gradle/apps/service-builder/foo-service/src/main/java/com/liferay/blade/samples/servicebuilder/service/base/FooLocalServiceBaseImpl.java#L247-L330)
+[here](https://github.com/liferay/liferay-blade-samples/blob/master/gradle/apps/service-builder/basic/basic-service/src/main/java/com/liferay/blade/samples/servicebuilder/service/base/FooLocalServiceBaseImpl.java#L247-L330)
 for details.
 
 The implementation of `FooLocalService.dynamicQuery()` uses
@@ -449,7 +449,7 @@ Here's an example from a test for @product@'s Bookmarks application:
 
 	actionableDynamicQuery.performActions();
 
-You can see the full context [here](https://github.com/liferay/liferay-portal/blob/master/modules/apps/collaboration/bookmarks/bookmarks-test/src/testIntegration/java/com/liferay/bookmarks/service/persistence/test/BookmarksEntryPersistenceTest.java#L483-L501).
+You can see the full context [here](https://github.com/liferay/liferay-portal/blob/7.0.6-ga7/modules/apps/collaboration/bookmarks/bookmarks-test/src/testIntegration/java/com/liferay/bookmarks/service/persistence/test/BookmarksEntryPersistenceTest.java#L494-L512).
 
 Consider the `FooLocalService` from the BLADE service builder API project
 again. For most of your actionable dynamic query use cases, the actionable
@@ -468,13 +468,13 @@ contains methods designed to facilitate processing that involves export /
 import functionality.
 
 To see examples of configuring indexer and export actionable dynamic queries,
-see see the Bookmarks application
-[here](https://github.com/liferay/liferay-portal/blob/master/modules/apps/collaboration/bookmarks/bookmarks-service/src/main/java/com/liferay/bookmarks/service/base/BookmarksEntryLocalServiceBaseImpl.java#L285-L296)
+see the Bookmarks application
+[here](https://github.com/liferay/liferay-portal/blob/7.0.6-ga7/modules/apps/collaboration/bookmarks/bookmarks-service/src/main/java/com/liferay/bookmarks/service/base/BookmarksEntryLocalServiceBaseImpl.java#L291-L302)
 and
-[here](https://github.com/liferay/liferay-portal/blob/master/modules/apps/collaboration/bookmarks/bookmarks-service/src/main/java/com/liferay/bookmarks/service/base/BookmarksEntryLocalServiceBaseImpl.java#L307-L405).
+[here](https://github.com/liferay/liferay-portal/blob/7.0.6-ga7/modules/apps/collaboration/bookmarks/bookmarks-service/src/main/java/com/liferay/bookmarks/service/base/BookmarksEntryLocalServiceBaseImpl.java#L313-L336).
 To see an example invocation of an indexable actionable dynamic query, see the
 `reindexEntries` method of the Bookmarks application's indexer
-[here](https://github.com/liferay/liferay-portal/blob/master/modules/apps/collaboration/bookmarks/bookmarks-service/src/main/java/com/liferay/bookmarks/search/BookmarksEntryIndexer.java#L155-L210).
+[here](https://github.com/liferay/liferay-portal/blob/7.0.6-ga7/modules/apps/collaboration/bookmarks/bookmarks-service/src/main/java/com/liferay/bookmarks/search/BookmarksEntryIndexer.java#L155-L210).
 
 ## Related Topics [](id=related-topics)
 

@@ -2,8 +2,8 @@
 
 ## Requirements [](id=requirements)
 
-- Xcode 7.2
-- iOS 9 SDK
+- Xcode 9.0
+- iOS 11 SDK
 - Liferay Portal 6.2 (CE or EE), Liferay 7.0 CE, Liferay DXP 
 - Liferay Screens Compatibility Plugin
   ([CE](http://www.liferay.com/marketplace/-/mp/application/54365664) or 
@@ -13,7 +13,12 @@
 
 ## Compatibility [](id=compatibility)
 
-- iOS 7 and above
+- iOS 9 and above
+
+## Xamarin Requirements [](id=xamarin-requirements)
+
+- Visual Studio 7.2
+- Mono .NET framework 5.4.1.6
 
 ## Features [](id=features)
 
@@ -25,35 +30,40 @@ scrollable collection of assets. It also implements
 with configurable page size. The Asset List Screenlet can show assets of the 
 following classes: 
 
-- `Group`
-- `Layout`
-- `Organization`
-- `User`
-- `UserGroup`
 - `BlogsEntry`
 - `BookmarksEntry`
 - `BookmarksFolder`
 - `CalendarEvent`
 - `DLFileEntry`
-- `DLFileEntryMetadata`
-- `DLFileEntryType`
-- `DLFileRank`
-- `DLFileShortcut`
-- `DLFileVersion`
 - `DDLRecord`
 - `DDLRecordSet`
+- `Group`
 - `JournalArticle` (Web Content)
 - `JournalFolder`
-- `MBMessage`
+- `Layout`
+- `LayoutRevision`
 - `MBThread`
 - `MBCategory`
 - `MBDiscussion`
 - `MBMailingList`
+- `Organization`
+- `User`
 - `WikiPage`
 - `WikiPageResource`
 - `WikiNode`
 
-The Asset List Screenlet also supports i18n in asset values.
+The Asset List Screenlet also supports i18n in asset values. 
+
+## JSON Services Used [](id=json-services-used)
+
+Screenlets in Liferay Screens call JSON web services in the portal. This 
+Screenlet calls the following services and methods.
+
+| Service | Method | Notes |
+| ------- | ------ | ----- |
+| `ScreensddlrecordService` (Screens compatibility plugin) | `getAssetEntries` | With `entryQuery` |
+| `ScreensddlrecordService` (Screens compatibility plugin) | `getAssetEntries` | With `companyId`, `groupId`, and `portletItemName` |
+| `AssetEntryService` | `getEntriesCount` |  |
 
 ## Module [](id=module)
 
@@ -87,7 +97,7 @@ Here are the offline mode policies that you can use with this Screenlet:
 
 - `classNameId`
 
-If you don’t use `classNameId`, you must use this attribute: 
+If you don't use `classNameId`, you must use this attribute: 
 
 - `portletItemName`
 

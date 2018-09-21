@@ -50,10 +50,10 @@ The
 [Code Upgrade Tool](/develop/tutorials/-/knowledge_base/7-0/adapting-to-liferay-7s-api-with-the-code-upgrade-tool)
 facilitates updating the code and resolving compilation issues quickly.
 
-The Code Upgrade Tool detects that `liferay-versions` value in the
-`liferay-plugin-package.properties` file needs updating and provides an option
-to fix it automatically. This is the only code adaptation
-`my-spring-mvc-portlet` requires. 
+The Code Upgrade Tool detects if the value of the `liferay-versions` property in
+your plugin's `liferay-plugin-package.properties` file needs updating and it
+provides an option to fix it automatically. This is the only code adaptation
+required by `my-spring-mvc-portlet`. 
 
 ## Resolve Dependencies [](id=resolve-dependencies)
 
@@ -61,26 +61,31 @@ In Liferay Portal 6.2, `my-spring-mvc-portlet` leveraged Portal's JARs by
 specifying them in the `liferay-plugin-package.properties` file's
 `portal-dependency-jars` property. Since the property is deprecated in
 @product-ver@, you should acquire dependencies using a dependency management
-framework, such as Apache Ant/Ivy.
+framework, such as Gradle, Maven, or Apache Ant/Ivy.
 
-Here's the updated `dependency` element for `my-spring-mvc-portlet`'s `ivy.xml`
-file:
+[Converting the sample portlet plugin from a traditional plugin to a Liferay Workspace web application](/develop/tutorials/-/knowledge_base/7-0/migrating-traditional-plugins-to-workspace-web-applications)
+facilitated resolving its dependencies. 
 
-    <dependencies defaultconf="default">
-        <dependency conf="test->default" name="arquillian-junit-container" org="org.jboss.arquillian.junit" rev="1.1.3.Final" />
-        <dependency conf="test->default" name="arquillian-tomcat-remote-7" org="org.jboss.arquillian.container" rev="1.0.0.CR6" />
-        <dependency conf="test->default" name="com.liferay.ant.arquillian" org="com.liferay" rev="1.0.0-SNAPSHOT" />
-        <dependency org="aopalliance" name="aopalliance" rev="1.0" />
-        <dependency org="commons-logging" name="commons-logging" rev="1.2" />
-        <dependency org="org.springframework" name="spring-aop" rev="4.1.9.RELEASE" />
-        <dependency org="org.springframework" name="spring-beans" rev="4.1.9.RELEASE" />
-        <dependency org="org.springframework" name="spring-context" rev="4.1.9.RELEASE" />
-        <dependency org="org.springframework" name="spring-core" rev="4.1.9.RELEASE" />
-        <dependency org="org.springframework" name="spring-expression" rev="4.1.9.RELEASE" />
-        <dependency org="org.springframework" name="spring-web" rev="4.1.9.RELEASE" />
-        <dependency org="org.springframework" name="spring-webmvc" rev="4.1.9.RELEASE" />
-        <dependency org="org.springframework" name="spring-webmvc-portlet" rev="4.1.9.RELEASE" />
-    </dependencies>
+Here's the updated `my-spring-mvc-portlet`'s `build.gradle` file:
+
+    dependencies {
+    	compileOnly group: 'aopalliance', name: 'aopalliance', version: '1.0'
+    	compileOnly group: 'commons-logging', name: 'commons-logging', version: '1.2'
+    	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "2.0.0"
+    	compileOnly group: "javax.portlet", name: "portlet-api", version: "2.0"
+    	compileOnly group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
+    	compile group: 'org.jboss.arquillian.junit', name: 'arquillian-junit-container', version: '1.1.3.Final'
+    	compile group: 'org.jboss.arquillian.container', name: 'arquillian-tomcat-remote-7', version: '1.0.0.CR6'
+    	compile group: 'com.liferay', name: 'com.liferay.ant.arquillian', version: '1.0.0-SNAPSHOT'
+    	compile group: 'org.springframework', name: 'spring-aop', version: '4.1.9.RELEASE'
+    	compile group: 'org.springframework', name: 'spring-beans', version: '4.1.9.RELEASE'
+    	compile group: 'org.springframework', name: 'spring-context', version: '4.1.9.RELEASE'
+    	compile group: 'org.springframework', name: 'spring-core', version: '4.1.9.RELEASE'
+    	compile group: 'org.springframework', name: 'spring-expression', version: '4.1.9.RELEASE'
+    	compile group: 'org.springframework', name: 'spring-web', version: '4.1.9.RELEASE'
+    	compile group: 'org.springframework', name: 'spring-webmvc', version: '4.1.9.RELEASE'
+    	compile group: 'org.springframework', name: 'spring-webmvc-portlet', version: '4.1.9.RELEASE'
+    }
 
 Some of `my-spring-mvc-portlet`'s dependency artifacts have new names. 
 
@@ -89,14 +94,31 @@ Some of `my-spring-mvc-portlet`'s dependency artifacts have new names.
  `spring-web-portlet` | `spring-webmvc-portlet` |
  `spring-web-servlet` | `spring-webmvc` |
 
-[Maven Central](https://search.maven.org/) provides artifact dependency information. 
+[Maven Central](https://search.maven.org/) provides artifact dependency
+information. 
 
 +$$$
 
-**Note**: If a dependency is an OSGi module JAR and @product@ exports your
-needed packages, *exclude* the JAR from your plugin WAR file. This prevents
-class loader collisions. To exclude a JAR from deployment, add its name to the
-portlet's `liferay-plugin-package.properties` file's `deploy-excludes` property.
+**Note**: If the Spring Framework version you're using differs from the version
+@product@ uses, you must name your Spring Framework JARs differently from
+@product@'s Spring Framework JARs. If you don't rename your JARs, @product@
+assumes you're using its Spring Framework JARs and excludes yours from the
+generated WAB (Web Application Bundle).
+[Portal property `module.framework.web.generator.excluded.paths`](https://docs.liferay.com/ce/portal/7.0-latest/propertiesdoc/portal.properties.html#Module%20Framework)
+lists @product@'s Spring Framework JARs. 
+[Understanding Excluded JARs](/develop/tutorials/-/knowledge_base/7-0/resolving-a-plugins-dependencies#understanding-excluded-jars)
+explains how to detect the Spring Framework version @product@ uses. 
+
+$$$
+
++$$$
+
+**Note**: If a dependency is an OSGi module JAR and @product@ already exports
+your plugin's required packages, *exclude* the JAR from your plugin's WAR file.
+This prevents your plugin from exporting the same package(s) that Liferay is
+already exporting. This prevents class loader collisions. To exclude a JAR from
+deployment, add its name to the your project's
+`liferay-plugin-package.properties` file's `deploy-excludes` property.
 
     deploy-excludes=\
         **/WEB-INF/lib/module-a.jar,\ 
@@ -107,10 +129,38 @@ must be excluded.
 
 $$$
 
+To import class packages referenced by your portlet's descriptor files, add the
+packages to an `Import-Package` header in the
+`liferay-plugin-package.properties` file. See 
+[Packaging a Spring MVC Portlet](/develop/tutorials/-/knowledge_base/7-0/spring-mvc#packaging-a-spring-mvc-portlet)
+for details.
+
+If you depend on a package from Java's `rt.jar` other than its `java.*`
+packages, override
+[portal property `org.osgi.framework.bootdelegation`](@platform-ref@/7.0-latest/propertiesdoc/portal.properties.html#Module%20Framework)
+and add it to the property's list. Go [here](/develop/tutorials/-/knowledge_base/7-0/resolving-classnotfoundexception-and-noclassdeffounderror-in-osgi-bundles#case-4-the-missing-class-belongs-to-a-java-runtime-package)
+for details. 
+
++$$$
+
+**Note**: Spring MVC portlets whose embedded JARs contain properties files
+(e.g., `spring.handlers`, `spring.schemas`, `spring.tooling`) might be affected
+by issue
+[LPS-75212](https://issues.liferay.com/browse/LPS-75212).
+The last JAR that has properties files is the only JAR whose properties are
+added to the resulting WAB's classpath. Properties in other JARs aren't added.
+
+[Packaging a Spring MVC Portlet](/develop/tutorials/-/knowledge_base/7-0/spring-mvc#packaging-a-spring-mvc-portlet)
+explains how to add all the embedded JAR properties.
+
+$$$
+
 The portlet is ready to deploy. Deploy it as you always have.
 
-@product@'s WAB Generator converts the portlet WAR to a Web Application Bundle
-(WAB) and installs the WAB to Liferay's OSGi Runtime Framework. 
+@product@'s
+[WAB Generator](/develop/tutorials/-/knowledge_base/7-0/using-the-wab-generator)
+converts the portlet WAR to a Web Application Bundle (WAB) and installs the WAB
+to Liferay's OSGi Runtime Framework. 
 
     21:12:23,775 INFO  [com.liferay.portal.kernel.deploy.auto.AutoDeployScanner][AutoDeployDir:252] Processing my-spring-mvc-portlet-7.0.0.1.war
     ...

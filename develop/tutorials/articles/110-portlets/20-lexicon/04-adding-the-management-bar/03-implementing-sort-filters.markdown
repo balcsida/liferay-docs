@@ -5,7 +5,7 @@ field, and sort them by ascending or descending. To do this, you must create a
 comparator class for each field that you want to sort.
 
 The sort filters are an implementation of the standard [`Comparator` Interface](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html),
-with some additional methods provided by the [`OrderByComparator` class](https://github.com/liferay/liferay-portal/blob/master/portal-kernel/src/com/liferay/portal/kernel/util/OrderByComparator.java). 
+with some additional methods provided by the [`OrderByComparator` class](https://github.com/liferay/liferay-portal/blob/7.0.6-ga7/portal-kernel/src/com/liferay/portal/kernel/util/OrderByComparator.java). 
 
 Once the class is created you can use it in your view to add the sort 
 filters to the UI.
@@ -224,4 +224,4 @@ The Management Bar Sort Filters are finished!
 
 [Implementing a Management Bar Navigation Filter](/develop/tutorials/-/knowledge_base/7-0/implementing-a-management-bar-navigation-filter)
 
-[Disabling the Management Bar](/develop/tutorials/-/knowledge_base/7-0/disabli g-the-management-bar)
+[Disabling the Management Bar](/develop/tutorials/-/knowledge_base/7-0/disabling-the-management-bar)

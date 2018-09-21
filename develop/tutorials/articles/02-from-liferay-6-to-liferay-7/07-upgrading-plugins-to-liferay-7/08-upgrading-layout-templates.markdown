@@ -11,18 +11,18 @@ This tutorial demonstrates the following:
 <!-- Comment out Code Upgrade Tool instructions until the tool is worth using with layout templates. Jim
 
 There are a couple ways you can upgrade your layout template to @product-ver@. If
-your project is in Liferay IDE or Liferay Developer Studio, you can use the Code 
+your project is in Liferay @ide@, you can use the Code 
 Upgrade Tool to start the upgrade process. The second option is to manually 
 upgrade the template files in the editor of your choice.
 
-If your project is in Liferay IDE or Liferay Developer Studio, you can follow 
+If your project is in Liferay @ide@, you can follow 
 the steps in the next section, otherwise you can skip to the 
 [Upgrading Your Layout Template Files](#upgrading-your-layout-template-files) 
 section.
 
 ## Upgrading Your Layout Template with the Code Upgrade Tool [](id=upgrading-your-layout-template-with-the-code-upgrade-tool)
 
-Since Liferay IDE and Liferay Developer Studio version 3.0, the Code Upgrade
+Since Liferay @ide@ version 3.1, the Code Upgrade
 Tool has been available to use. The Code Upgrade Tool runs through your code,
 points out the breaking changes, and suggest how to update it. Follow
 these steps to upgrade your layout template to @product-ver@.
@@ -88,7 +88,7 @@ Follow these steps to upgrade your layout template:
 
     The `[device-size]` value must be `xs`, `sm`, `md`, or `lg`. In most 
     cases, an `md` device size works well. You can read more about the Bootstrap
-    grid system on their site at [http://getbootstrap.com/css/#grid](http://getbootstrap.com/css/#grid).
+    grid system on their site at [https://getbootstrap.com/docs/3.3/css/#grid](https://getbootstrap.com/docs/3.3/css/#grid).
 
     The `[number]` value must be an integer from `1` to `12`. A row's width is
     divisible by twelve; so the combined width of a row's columns must equal `12`.

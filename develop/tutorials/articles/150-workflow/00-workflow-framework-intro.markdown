@@ -1,10 +1,10 @@
 # Liferay's Workflow Framework [](id=liferays-workflow-framework)
 
 Enabling your application's entities to support workflow is so easy, you could do it in
-your sleep (but don’t try). Workflow enabled entities require a few things:
+your sleep (but don't try). Workflow enabled entities require a few things:
 
--  A workflow handler class to interact with Liferay’s workflow back end and
-   the entity’s service layer.
+-  A workflow handler class to interact with Liferay's workflow back end and
+   the entity's service layer.
 
 -  Some extra fields in their database table that help keep track of their
    status.
@@ -17,8 +17,8 @@ your sleep (but don’t try). Workflow enabled entities require a few things:
     The service layer needs code to populate the new fields when entities are added to the
     database. 
 
-    The service layer needs to send the entity through Liferay’s workflow, and it needs
-    to handle the workflow status of the entity when it’s returned by the workflow. 
+    The service layer needs to send the entity through Liferay's workflow, and it needs
+    to handle the workflow status of the entity when it's returned by the workflow. 
 
     The service layer needs getters that return entities of the desired workflow
     status (usually *approved*).
@@ -174,8 +174,27 @@ For an example of a fully implemented `updateStatus` method, see the
 `com.liferay.portlet.blogs.service.impl.BlogsEntryLocalServiceImpl` class in
 `portal-impl`.
 
-Once you've accounted for workflow status in your service layer, there's only
-one thing left to do: update the user interface.
+Before leaving the service layer, add a call to `deleteWorkflowInstanceLinks`
+in the `deleteEntity` method. Here's what it looks like:
+
+    workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
+        fooEntity.getCompanyId(), fooEntity.getGroupId(),
+        FooEntity.class.getName(), fooEntity.getFooEntityId());
+
+When you send an entity to the workflow framework via the
+`startWorkflowInstance` call, it creates an entry in the `workflowinstancelink`
+database table. This `delete` call ensures there are no orphaned entries in the
+`workflowinstancelinks` table.
+
+Note, to get the `WorkflowInstanceLocalService` injected into your
+`*LocalServiceBaseImpl` so you can call its methods in the `LocalServiceImpl`,
+add this to your entity declaration in `service.xml`:
+
+		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal" />
+
+Save your work and run Service Builder. Once you've accounted for workflow
+status in your service layer, there's only one thing left to do: update the user
+interface.
 
 ## Workflow Status and the View Layer [](id=workflow-status-and-the-view-layer)
 

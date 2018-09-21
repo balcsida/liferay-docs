@@ -45,10 +45,10 @@ $$$
 As an example, consider @product@'s Blogs app. Articles are represented by the 
 `JournalArticle` entity. This entity is declared in the `journal-service` 
 module's 
-[`service.xml` file](https://github.com/liferay/liferay-portal/blob/master/modules/apps/web-experience/journal/journal-service/service.xml) 
+[`service.xml` file](https://github.com/liferay/liferay-portal/blob/7.0.6-ga7/modules/apps/web-experience/journal/journal-service/service.xml) 
 with the `remote-service` attribute set to `true`. Service Builder therefore 
 generates 
-[the remote service class `JournalArticleServiceImpl`](https://github.com/liferay/liferay-portal/blob/master/modules/apps/web-experience/journal/journal-service/src/main/java/com/liferay/journal/service/impl/JournalArticleServiceImpl.java) 
+[the remote service class `JournalArticleServiceImpl`](https://github.com/liferay/liferay-portal/blob/7.0.6-ga7/modules/apps/web-experience/journal/journal-service/src/main/java/com/liferay/journal/service/impl/JournalArticleServiceImpl.java) 
 to hold the remote service method implementations. If you were developing this 
 app from scratch, this class would initially be empty; you must use it to 
 implement the entity's remote service methods. Also, note that the remote 
@@ -56,7 +56,7 @@ service method implementations in `JournalArticleServiceImpl` follow best
 practice by checking permissions and calling the corresponding local service 
 method. For example, each `addArticle` method in `JournalArticleServiceImpl` 
 checks permissions via 
-[the custom permissions class `JournalFolderPermission`](https://github.com/liferay/liferay-portal/blob/master/modules/apps/web-experience/journal/journal-service/src/main/java/com/liferay/journal/service/permission/JournalFolderPermission.java) 
+[the custom permissions class `JournalFolderPermission`](https://github.com/liferay/liferay-portal/blob/7.0.6-ga7/modules/apps/web-experience/journal/journal-service/src/main/java/com/liferay/journal/service/permission/JournalFolderPermission.java) 
 and then calls the local service's matching `addArticle` method: 
 
     @Override
@@ -74,7 +74,7 @@ to perform permissions checks on. Also note that the local service is called via
 the `journalArticleLocalService` field. This is a Spring bean of type 
 `JournalArticleLocalServiceImpl` that's injected into 
 `JournalArticleServiceImpl` by Service Builder. See 
-[the class `JournalArticleServiceBaseImpl`](https://github.com/liferay/liferay-portal/blob/master/modules/apps/web-experience/journal/journal-service/src/main/java/com/liferay/journal/service/base/JournalArticleServiceBaseImpl.java) 
+[the class `JournalArticleServiceBaseImpl`](https://github.com/liferay/liferay-portal/blob/7.0.6-ga7/modules/apps/web-experience/journal/journal-service/src/main/java/com/liferay/journal/service/base/JournalArticleServiceBaseImpl.java) 
 for a complete list of Spring beans available in `JournalArticleServiceImpl`. 
 
 After you've finished adding remote service methods to your `*ServiceImpl` 
@@ -125,13 +125,13 @@ Builder project in a Liferay Workspace, do the following in the workspace's
 
         repositories {
             maven {
-                url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
+                url "https://repository-cdn.liferay.com/nexus/content/groups/public"
             }
         }
 
     This repository hosts the WSDD Builder library, its transitive dependencies, 
     and other Liferay libraries. Note that if you created your Service Builder 
-    project with the `service-builder` template in Blade or Liferay IDE, then 
+    project with the `service-builder` template in Blade CLI or Liferay @ide@, then 
     your `settings.gradle` file should already contain this. 
 
 3. Add this code to the end of the file: 
@@ -158,7 +158,7 @@ Builder project in a Liferay Workspace, do the following in the workspace's
 
             repositories {
                 maven {
-                    url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
+                    url "https://repository-cdn.liferay.com/nexus/content/groups/public"
                 }
             }
         }
@@ -173,7 +173,7 @@ Builder project in a Liferay Workspace, do the following in the workspace's
             }
         }
 
-4. Refresh the Liferay Workspace's Gradle project. Close and restart Liferay IDE 
+4. Refresh the Liferay Workspace's Gradle project. Close and restart Liferay @ide@ 
    if you're using it. 
 
 Now that you've installed the WSDD Builder plugin, you're ready to build and 
@@ -200,7 +200,7 @@ the project:
 
         repositories {
             maven {
-                url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
+                url "https://repository-cdn.liferay.com/nexus/content/groups/public"
             }
         }
     }
@@ -215,7 +215,7 @@ do this.
 To build the WSDD, you must run the `buildWSDD` Gradle task in your `*-service` 
 module. Exactly how you do this depends on your development tools: 
 
-- **Liferay IDE:** From the Liferay Workspace perspective's *Gradle Tasks* pane 
+- **Liferay @ide@:** From the Liferay Workspace perspective's *Gradle Tasks* pane 
   (typically on the right), open your `*-service` module's *build* folder and 
   double-click *buildWSDD*. 
 - **Command Line:** Navigate to your `*-service` module and run 
@@ -287,7 +287,7 @@ For example, to build the WSDD for the Bookmarks app, first navigate to the
 `liferay-portal/modules/apps/collaboration/bookmarks/bookmarks-service` folder 
 in your terminal. Then run the following command:
 
-    `../../../../../gradlew buildWSDD`
+    ../../../../../gradlew buildWSDD
 
 Next, deploy the 
 `liferay-portal/tools/sdk/dist/com.liferay.bookmarks.service-wsdd-[version].jar` 

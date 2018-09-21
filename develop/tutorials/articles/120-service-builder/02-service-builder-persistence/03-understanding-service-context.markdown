@@ -116,12 +116,12 @@ for entities in Liferay.
 
 ## Creating and Populating a Service Context in JavaScript [](id=creating-and-populating-a-service-context-in-javascript)
 
-Liferay's API can be invoked in languages other than Java, such as Beanshell,
-Groovy, JavaScript, Python, Ruby, SOAP, and JSON. Some methods of Liferay's API
-require or allow a `ServiceContext` parameter. If you're invoking such a method
-via Liferay's JSON web services, you might want to create and populate a
-`ServiceContext` object in JavaScript. Creating a `ServiceContext` object in
-JavaScript is no different from creating any other object in JavaScript.
+Liferay's API can be invoked in languages other than Java. Some methods of
+Liferay's API require or allow a `ServiceContext` parameter. If you're invoking
+such a method via Liferay's JSON web services, you might want to create and
+populate a `ServiceContext` object in JavaScript. Creating a `ServiceContext`
+object in JavaScript is no different from creating any other object in
+JavaScript.
 
 Before examining a JSON web service invocation that uses a `ServiceContext`
 object, it helps to see a simple JSON web service example in JavaScript:
@@ -161,7 +161,7 @@ curl, or click on *URL example* to see how to invoke the web service via a URL.
 ![Figure 1: When you invoke a service from Liferay's JSON web services page, you can view the result of your service invocation as well as example code for invoking the service via JavaScript, curl, or URL.](../../../images/jsonws-simple-example.png)
 
 To learn more about Liferay's JSON web services, see the
-[JSON Web Services](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/registering-json-web-services)
+[JSON Web Services](/develop/tutorials/-/knowledge_base/7-0/registering-json-web-services)
 tutorial.
 
 <!--

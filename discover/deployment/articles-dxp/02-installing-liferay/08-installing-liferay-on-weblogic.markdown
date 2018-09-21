@@ -3,7 +3,7 @@
 Although it's possible to install @product@ in a WebLogic Admin
 Server, this isn't recommended. It's best practice to install web apps,
 including @product@, in a WebLogic Managed server. By deploying to a Managed
-Server, you’ll be able to start/shutdown @product@ more quickly, and you’ll
+Server, you'll be able to start/shutdown @product@ more quickly, and you'll
 more easily be able to extend @product@ into a cluster configuration. This article
 therefore focuses on installing @product@ in a Managed Server. 
 
@@ -104,6 +104,12 @@ Start* tab. Enter the following into the *Arguments* field:
 
 Click *Save* when you're finished. 
 
+The UTF-8 file encoding must also be set in your environment's Java properties.
+In your `setDomainEnv.[sh|cmd]` script, append `-Dfile.encoding=utf8` ahead of
+your other Java properties: 
+
+    JAVA_PROPERTIES="-Dfile.encoding=utf8 ${JAVA_PROPERTIES} ${CLUSTER_PROPERTIES}"
+
 Next, you'll set some @product@-specific properties for your @product@ installation. 
 
 ## Setting @product@ Properties [](id=setting-liferay-properties)
@@ -112,7 +118,7 @@ Before installing @product@, you must set the
 [*Liferay Home*](/discover/deployment/-/knowledge_base/7-0/installing-liferay-portal#liferay-home)
 folder's location via the `liferay.home` property in a `portal-ext.properties` 
 file. You can also use this file to override 
-[other @product@ properties](https://docs.liferay.com/portal/7.0/propertiesdoc/portal.properties.html) 
+[other @product@ properties](@platform-ref@/7.0-latest/propertiesdoc/portal.properties.html) 
 that you may need. 
 
 First, decide which directory you want to serve as Liferay Home. In WebLogic, 
@@ -153,7 +159,7 @@ now:
    it doesn't exist).
 
 If you don't want to use @product@'s built-in Hypersonic database, you must also 
-add your database's driver JAR file to your domain’s `lib` folder. Note that 
+add your database's driver JAR file to your domain's `lib` folder. Note that 
 although Hypersonic is fine for testing purposes, you **should not** use it for 
 production @product@ instances. 
 
@@ -205,7 +211,7 @@ Next, you'll configure your mail session.
 ## Mail Configuration [](id=mail-configuration)
 
 If you want WebLogic to manage your mail session, use the following procedure. 
-If you want to use Liferay’s built-in mail session (recommended), you can skip 
+If you want to use Liferay's built-in mail session (recommended), you can skip 
 this section. 
 
 1. Start WebLogic and log in to your Admin Server's console.

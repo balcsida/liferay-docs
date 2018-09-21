@@ -38,11 +38,11 @@ terminology, your model classes are called entities. For example, the Bookmarks
 application has two entities: `BookmarksEntry` and `BookmarksFolder`. The
 requirements for each of these entities are defined in the `bookmarks-service`
 module's
-[service.xml](https://github.com/liferay/liferay-portal/blob/master/modules/apps/collaboration/bookmarks/bookmarks-service/service.xml)
+[service.xml](https://github.com/liferay/liferay-portal/blob/7.0.6-ga7/modules/apps/collaboration/bookmarks/bookmarks-service/service.xml)
 listed in the `<column />` elements. 
 
 Once Service Builder reads the `service.xml` file, you can define your entities.
-Liferay IDE makes it very easy to define entities in your application's
+Liferay @ide@ makes it very easy to define entities in your application's
 `service.xml` file. To define a custom entity, follow these steps:
 
 1. Create the `service.xml` file in your project's `*-service` module. It
@@ -72,21 +72,21 @@ To define a service for your portlet project, you must create a `service.xml`
 file. The DTD (Document Type Declaration) file
 [http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd](http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd)
 specifies the format and requirements of the XML to use. You can create your
-`service.xml` file manually, following the DTD, or you can use Liferay IDE.
-Liferay IDE helps you build the `service.xml` file piece-by-piece, taking the
+`service.xml` file manually, following the DTD, or you can use Liferay @ide@.
+@ide@ helps you build the `service.xml` file piece-by-piece, taking the
 guesswork out of creating XML that adheres to the DTD.
 
 If a default `service.xml` file already exists in your `*-service` module
 folder, check to see if it has an `<entity />` element named *Foo*. If it has
 the Foo entity, remove the entire `<entity name="Foo" ...> ... </entity>`
-element. The Liferay IDE project wizard creates the Foo entity as an example. It
+element. The Liferay @ide@ project wizard creates the Foo entity as an example. It
 has no practical use for you. 
 
 <!-- 
 If you don't already have a `service.xml` file, it's easy to create one using
-Liferay IDE. Simply select your `event-listing-portlet` project in the Package
+Liferay @ide@. Simply select your `event-listing-portlet` project in the Package
 Explorer and then select *File* &rarr; *New* &rarr; *Liferay Service Builder*.
-Liferay IDE creates a `service.xml` file in your `docroot/WEB-INF/src` folder
+Liferay @ide@ creates a `service.xml` file in your `docroot/WEB-INF/src` folder
 and displays the file in *Overview* mode. -->
 
 <!-- The above paragraph is not accurate at this time because IDE does not
@@ -96,7 +96,7 @@ a different way. Full support for the Service Builder functionality in IDE is
 expected for IDE 3.1. -Cody --> 
 
 If you don't already have a `service.xml` file, create one in your `*-service`
-module. Once it's created, open it. Liferay IDE provides a Diagram mode and a
+module. Once it's created, open it. Liferay @ide@ provides a Diagram mode and a
 Source mode to give you different perspectives of the service information in
 your `service.xml` file. Diagram mode is helpful for creating and visualizing
 relationships between service entities. Source mode brings up the `service.xml`
@@ -108,7 +108,7 @@ Next, you can start filling out the global information for your service.
 ## Step 2: Defining Global Service Information [](id=step-2-defining-global-service-information)
 
 A service's global information applies to all of its entities, so it's a good
-place to start. In Liferay IDE, select the *Service Builder* node in the upper
+place to start. In Liferay @ide@, select the *Service Builder* node in the upper
 left corner of the Overview mode of your `service.xml` file. The main section of
 the view now shows the Service Builder form in which you can enter your
 service's global information. The fields include the service's package path,
@@ -133,7 +133,7 @@ tutorial for a description of the contents of these packages.
 Service Builder uses the service namespace in naming the database tables it
 generates for the service. For example, *Event* could serve as the namespace for
 an Event Listing portlet service. Service Builder uses the namespace in the
-following SQL scripts it generates in your `src/main/resources/sql` folder:
+following SQL scripts it generates in your `src/main/resources/META-INF/sql` folder:
 
 - `indexes.sql`
 - `sequences.sql`
@@ -179,7 +179,7 @@ the model objects in Java and the fields and tables in your database. Once your
 entities are defined, Service Builder handles the mapping automatically, giving
 you a facility for taking Java objects and persisting them. For the Bookmarks
 application, two entities are created according to its
-[service.xml](https://github.com/liferay/liferay-portal/blob/master/modules/apps/collaboration/bookmarks/bookmarks-service/service.xml)
+[service.xml](https://github.com/liferay/liferay-portal/blob/7.0.6-ga7/modules/apps/collaboration/bookmarks/bookmarks-service/service.xml)
 --one for bookmark entries and one for bookmark folders.
 
 Here's a summary of the information used for the BookmarksEntry entity:
@@ -194,7 +194,7 @@ And here's what was used for the BookmarksFolder entity:
 - **Local service:** *yes*
 - **Remote service:** *yes* 
 
-To create your entities using Liferay IDE, select the *Entities* node under the
+To create your entities using Liferay @ide@, select the *Entities* node under the
 Service Builder node in the outline on the left side of the `service.xml` editor
 in Overview mode. In the main part of the view, notice that the Entities table
 is empty. Create an entity by clicking on the *Add Entity* icon
@@ -202,7 +202,7 @@ is empty. Create an entity by clicking on the *Add Entity* icon
 entity's name and if you'd like to generate local and remote services for that
 entity. Add as many entities as you need.
 
-![Figure 2: Adding service entities is easy with Liferay IDE's *Overview* mode of your `service.xml` file.](../../../images/service-add-entity.png)
+![Figure 2: Adding service entities is easy with Liferay @ide@'s *Overview* mode of your `service.xml` file.](../../../images/service-add-entity.png)
 
 An entity's name is used to name the database table for persisting instances
 of the entity. The actual name of the database table is prefixed with the
@@ -245,7 +245,7 @@ These attributes map on the one side to fields in a table and on the other side
 to attributes of a Java object. To add attributes for your entity, you need to
 drill down to its columns in the Overview mode outline of the `service.xml`
 file. From the outline, expand the *Entities* node and expand an entity node.
-Then select the *Columns* node. Liferay IDE displays a table of the entity's
+Then select the *Columns* node. Liferay @ide@ displays a table of the entity's
 columns. 
 
 Service Builder creates a database field for each column you add to the
@@ -264,6 +264,13 @@ represents the entire primary key for the entity. This is the case in the Event
 Listing example. However, it's possible to use multiple columns as the primary
 key for an entity. In this case, the combination of columns makes up a compound
 primary key for the entity.
+
++$$$
+
+**Note**: On deploying a `*service` module, Service Builder automatically 
+generates indexes for all entity primary keys. 
+
+$$$
 
 Similar to the way you used the form table for adding entities, add attribute
 columns for each of your entities. Create each attribute by clicking on the Add
@@ -321,13 +328,13 @@ entity. That is, you'll want to *relate* the entities. Liferay's Bookmarks
 application defines a relationship between an entry and its folder.
 
 As mentioned earlier, each bookmark must have a folder. Therefore, each
-`BookmarksEntry` entity must relate to a `BookmarksFolder` entity. Liferay IDE's
+`BookmarksEntry` entity must relate to a `BookmarksFolder` entity. Liferay @ide@'s
 Diagram mode for `service.xml` makes relating entities easy. First, select
 Diagram mode for the `service.xml` file. Then select the *Relationship* option
 under *Connections* in the palette on the right side of the view. This
 relationship tool helps you draw relationships between entities in the diagram.
 Click your first entity and move your cursor over to the entity you'd like to
-relate it with. Liferay IDE draws a dashed line from your selected entity to the
+relate it with. Liferay @ide@ draws a dashed line from your selected entity to the
 cursor. Click the second entity to complete drawing the relationship. Liferay
 IDE turns the dashed line into a solid line, with an arrow pointing to the
 second entity. Save the `service.xml` file. 
@@ -335,10 +342,10 @@ second entity. Save the `service.xml` file.
 Congratulations! You've related two entities. Their relationship should show in
 Diagram mode and look similar to that of the figure below. 
 
-![Figure 3: Relating entities is a snap in Liferay IDE's *Diagram* mode for `service.xml`.](../../../images/service-builder-relate-entities.png)
+![Figure 3: Relating entities is a snap in Liferay @ide@'s *Diagram* mode for `service.xml`.](../../../images/service-builder-relate-entities.png)
 
 Switch to *Source* mode in the editor for your `service.xml` file and note that
-Liferay IDE created a column element in the first selected entity to hold the ID
+Liferay @ide@ created a column element in the first selected entity to hold the ID
 of the corresponding entity instance reference. For example:
 
     <column name="folderId" type="long" />
@@ -353,7 +360,7 @@ in a particular order. Liferay lets you specify the default order of the
 entities in your `service.xml` file. 
 
 Suppose you want to return `BookmarksEntry` entities alphabetically by name.
-It's easy to specify these default orderings using Liferay IDE. Switch back to
+It's easy to specify these default orderings using Liferay @ide@. Switch back to
 *Overview* mode in the editor for your `service.xml` file. Then select the
 *Order* node under the entity node in the outline on the left side of the
 view. The IDE displays a form for ordering the chosen entity. Check the *Specify
@@ -377,7 +384,7 @@ based on each finder you create for an entity. It creates methods to fetch,
 find, remove, and count entity instances based on the finder's parameters. 
 
 For many applications, it's important to be able to find its entities per site.
-You can specify these finders using Liferay IDE's Overview mode of
+You can specify these finders using Liferay @ide@'s Overview mode of
 `service.xml`. Select the *Finders* node under the entity node in the Outline on
 the left side of the screen. The IDE displays an empty *Finders* table in the
 main part of the view. Create a new finder by clicking the *Add* icon
@@ -388,13 +395,25 @@ to name the methods that Service Builder creates. The IDE creates a new
 finder sub-node under the *Finders* node in the outline. Next, you'll learn how
 to specify the finder column for this node. 
 
++$$$
+
+**Important**: DO NOT create finders that use entity primary key as parameters. 
+They're unnecessary as Service Builder automatically generates
+`findeByPrimaryKey` and `fetchByPrimaryKey` methods for all entity primary keys.
+On deploying a `*service` module, Service Builder creates indexes for all entity
+primary key columns and finder columns. Adding finders that use entity primary
+keys results in attempts to create multiple indexes for the same
+columns---Oracle DB, for example, reports these attempts as errors. 
+
+$$$
+
 Under the new finder node, the IDE created a *Finder Columns* node. Select the
 *Finder Columns* node to specify the columns for your finder's parameters.
 Create a new finder column by clicking the *Add* icon and specifying the
 column's name. Keep in mind that you can specify multiple parameters (columns)
 for a finder.
 
-![Figure 4: Creating Finder entities is easy with Liferay IDE.](../../../images/service-builder-finders.png)
+![Figure 4: Creating Finder entities is easy with Liferay @ide@.](../../../images/service-builder-finders.png)
 
 If you're creating site-scoped entities (entities whose data should be unique to
 each site), you should follow the steps described above to create finders by

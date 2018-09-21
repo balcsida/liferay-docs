@@ -576,9 +576,9 @@ This will affect any implementations of `ActionCommand`.
 #### How should I update my code? [](id=how-should-i-update-my-code-12)
 
 Replace imports of `com.liferay.util.bridges.mvc.ActionCommand` with
-`com.liferay.portal.kernel.portlet.bridges.mvc.ActionCommand` and imports of
+`com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand` and imports of
 `com.liferay.util.bridges.mvc.BaseActionCommand` with
-`com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand`.
+`com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand`.
 
 #### Why was this change made? [](id=why-was-this-change-made-12)
 
@@ -1290,19 +1290,19 @@ always required, but it was hidden by the `ServiceContext` object.
 
 The following tags have been removed:
 
-- `portlet:icon-close`
-- `portlet:icon-configuration`
-- `portlet:icon-edit`
-- `portlet:icon-edit-defaults`
-- `portlet:icon-edit-guest`
-- `portlet:icon-export-import`
-- `portlet:icon-help`
-- `portlet:icon-maximize`
-- `portlet:icon-minimize`
-- `portlet:icon-portlet-css`
-- `portlet:icon-print`
-- `portlet:icon-refresh`
-- `portlet:icon-staging`
+- `liferay-portlet:icon-close`
+- `liferay-portlet:icon-configuration`
+- `liferay-portlet:icon-edit`
+- `liferay-portlet:icon-edit-defaults`
+- `liferay-portlet:icon-edit-guest`
+- `liferay-portlet:icon-export-import`
+- `liferay-portlet:icon-help`
+- `liferay-portlet:icon-maximize`
+- `liferay-portlet:icon-minimize`
+- `liferay-portlet:icon-portlet-css`
+- `liferay-portlet:icon-print`
+- `liferay-portlet:icon-refresh`
+- `liferay-portlet:icon-staging`
 
 #### Who is affected? [](id=who-is-affected-35)
 
@@ -1314,7 +1314,8 @@ The tag `liferay-ui:icon` can replace the call to the previous tags. All the
 previous tags have been converted into Java classes that implement the methods
 that the `icon` tag requires.
 
-See the modules `portlet-configuration-icon-*` in the `modules/addons` folder.
+See the modules `portlet-configuration-icon-*` in the
+`modules/apps/web-experience/portlet-configuration` folder.
 
 #### Why was this change made? [](id=why-was-this-change-made-35)
 
@@ -4219,7 +4220,7 @@ Settings* &rarr; *Shopping Cart Images* and editing the settings there.
 
 If you would like to include the new configuration in your application, follow
 the instructions for
-[making your applications configurable in Liferay 7.0](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/making-your-applications-configurable).
+[making your applications configurable in Liferay 7.0](/develop/tutorials/-/knowledge_base/7-0/making-your-applications-configurable).
 
 #### Why was this change made? [](id=why-was-this-change-made-104)
 
@@ -4287,7 +4288,7 @@ Settings* &rarr; *Web Content File Uploads* and editing the settings there.
 
 If you would like to include the new configuration in your application, follow
 the instructions for
-[making your applications configurable in Liferay 7.0](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/making-your-applications-configurable).
+[making your applications configurable in Liferay 7.0](/develop/tutorials/-/knowledge_base/7-0/making-your-applications-configurable).
 
 #### Why was this change made? [](id=why-was-this-change-made-106)
 
@@ -4360,3 +4361,62 @@ To use this feature in development, set  global property
 This change was made so that 7.0 developers could test database schema changes
 on the fly, without having to write upgrade processes.
 
+---------------------------------------
+
+### Removed Exports from Dynamic Data Lists Web [](id=removed-exports-from-dynamic-data-lists-web)
+- **Date:** 2017-Nov-27
+- **JIRA Ticket:** LPS-75778
+
+#### What changed? [](id=what-changed-109)
+
+The `Dynamic Data Lists Web` module no longer exports the
+`com.liferay.dynamic.data.lists.web.asset` package.
+
+#### Who is affected? [](id=who-is-affected-109)
+
+This change affects anyone who is using the
+`com.liferay.dynamic.data.lists.web.asset` package. This particularly affects
+anyone using
+`com.liferay.dynamic.data.lists.web.asset.DDLRecordAssetRendererFactory` and
+casting the return `AssetRenderer` to
+`com.liferay.dynamic.data.lists.web.asset.DDLRecordAssetRenderer`.
+
+#### How should I update my code? [](id=how-should-i-update-my-code-109)
+
+There are no replacements for this package; you must remove all usages.
+`DDLRecordAssetRendererFactory` can still be used as an OSGi service; however,
+you can no longer cast the returned `AssetRenderer` to `DDLRecordAssetRenderer`.
+
+#### Why was this change made? [](id=why-was-this-change-made-109)
+
+This change was made to clean up LPKG dependencies.
+
+---------------------------------------
+
+### Deprecated the social.activity.sets.enabled Property with No Direct Replacement [](id=deprecated-the-social-activity-sets-enabled-property-with-no-direct-replace)
+- **Date:** 2018-Jan-24
+- **JIRA Ticket:** LPS-63635
+
+#### What changed? [](id=what-changed-110)
+
+The `social.activity.sets.enabled` property is no longer recognized by the
+Social Activity portlet. From Liferay Portal 7.0 onwards, Social Activity Sets
+will always be used.
+
+#### Who is affected? [](id=who-is-affected-110)
+
+This change affects anyone who has set the `social.activity.sets.enabled`
+property to `false`.
+
+#### How should I update my code? [](id=how-should-i-update-my-code-110)
+
+No changes are necessary.
+
+#### Why was this change made? [](id=why-was-this-change-made-110)
+
+The Social Activity portlet had two different versions with slightly different
+behaviors; one used in Liferay Portal and the other one in Social Office. To
+sync both components, and simplify its internal logic, activity sets are always
+enabled by default, with no option to disable them.
+
+---------------------------------------

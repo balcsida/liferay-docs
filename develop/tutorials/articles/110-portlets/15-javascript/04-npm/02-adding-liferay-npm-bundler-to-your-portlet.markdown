@@ -5,6 +5,15 @@ npm and adding it to your npm build process.
 
 ## Installing liferay-npm-bundler [](id=installing-liferay-npm-bundler)
 
++$$$
+
+**Note:** liferay-npm-bundler 1.x performs aggressive semantic version 
+resolution, which can potentially lead to unstable results. To avoid issues, we 
+recommend that you use the latest version of the bundler (2.x at the time of 
+this writing). 
+
+$$$
+
 Follow these steps to install liferay-npm-bundler:
 
 1.  Install NodeJS >= [v6.11.0](http://nodejs.org/dist/v6.11.0/) if you 
@@ -15,8 +24,8 @@ Follow these steps to install liferay-npm-bundler:
      
     If you don't have a portlet already, create an empty MVC portlet. For 
     convenience, you can use 
-    [Blade CLI](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/installing-blade-cli) 
-    to create an empty portlet with the [mvc portlet blade template](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/using-the-mvc-portlet-template).
+    [Blade CLI](/develop/tutorials/-/knowledge_base/7-0/installing-blade-cli) 
+    to create an empty portlet with the [mvc portlet blade template](/develop/reference/-/knowledge_base/7-0/using-the-mvc-portlet-template).
 
 3.  Run the following command to install the liferay-npm-bundler:
 
@@ -30,8 +39,8 @@ project.
 
 $$$
 
-Now that you have the liferay-npm-bundler installed, you can add it to your 
-npm build process.
+Now that you have the liferay-npm-bundler installed, you can add it to your npm 
+build process.
 
 ## Adding liferay-npm-bundler to Your Build Process [](id=adding-liferay-npm-bundler-to-your-build-process)
 

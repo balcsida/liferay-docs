@@ -111,20 +111,14 @@ Since Elasticsearch is the default search engine in @product@, the Elasticsearch
 adapter is already installed and running. Stop it before configuring the Solr
 adapter.
 
-+$$$
+Stop the Elasticsearch adapter bundle using the App Manager, the Felix Gogo
+shell, or the bundle blacklist. If you're a Digital Enterprise customer, use the
+blacklist feature as described below. The App Manager and Gogo shell rely on the
+`osgi/state` folder to "remember" the state of the bundle. If you delete this
+folder (recommended during patching) the Elasticsearch connector will be
+reinstalled and started automatically. 
 
-**Liferay Digital Enterprise:** Using the [App Manager](/discover/portal/-/knowledge_base/7-0/managing-and-configuring-apps) to
-deactivate the Elasticsearch adapter bundle, as described below, is easy and
-effective. However, there's a limitation related to the patching process for
-Liferay Digital Enterprise 7.0. If you install a patch that replaces the
-`Liferay Foundation.lpkg`, the Elasticsearch adapter is reinstalled and started
-automatically. Because of this, you must deactivate the Elasticsearch bundle
-after each patch, using the method described below.
-
-$$$
-
-The best way to stop the Elasticsearch adapter bundle is through the App
-Manager. Navigate to Control Panel &rarr; Apps &rarr; App Manager.
+Navigate to Control Panel &rarr; Apps &rarr; App Manager.
 
 Once you're in the App Manager, search for *elasticsearch*. Find the Liferay
 Portal Search Elasticsearch module and click the edit
@@ -146,8 +140,27 @@ Stop the Elasticsearch adapter by entering
 
     stop [bundle ID]
 
-In the case above, the `[bundle ID]` is `239`. Now you can install and configure
-the Solr adapter:
+In the case above, the `[bundle ID]` is `239`. 
+
++$$$
+
+**Liferay Digital Enterprise:** Digital Enterprise customers should 
+[blacklist](/discover/portal/-/knowledge_base/7-0/blacklisting-osgi-modules) 
+the Elasticsearch, Shield, and Marvel plugins. 
+
+1.  Create a 
+
+        com.liferay.portal.bundle.blacklist.internal.BundleBlacklistConfiguration.config
+
+    file with these contents:
+
+        blacklistBundleSymbolicNames=["com.liferay.portal.search.elasticsearch","com.liferay.portal.search.elasticsearch.shield","com.liferay.portal.search.elasticsearch.marvel.web"]
+
+2.  Place the file in `Liferay Home/osgi/configs`.
+
+$$$
+
+Now you can install and configure the Solr adapter:
 
 1. Start @product@, then deploy the Solr adapter by copying the LPKG you
    downloaded to `Liferay_Home/deploy`.
@@ -292,7 +305,6 @@ Liferay's Solr adapter.
 article](/discover/reference/-/knowledge_base/7-0/solr-settings).
 
 $$$
-
 
 Now you're able to configure @product@ for Solr, and Solr for @product@. Remember
 that Elasticsearch is the default search engine for @product@, so if you're not

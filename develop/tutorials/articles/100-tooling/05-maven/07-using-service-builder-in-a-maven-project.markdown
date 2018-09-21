@@ -24,7 +24,7 @@ Time to get started!
                 <plugin>
                     <groupId>com.liferay</groupId>
                     <artifactId>com.liferay.portal.tools.service.builder</artifactId>
-                    <version>1.0.160</version>
+                    <version>1.0.174</version>
                     <configuration>
                         <apiDirName>../blade.servicebuilder.api/src/main/java</apiDirName>
                         <autoImportDefaultReferences>true</autoImportDefaultReferences>
@@ -33,6 +33,7 @@ Time to get started!
                         <hbmFileName>src/main/resources/META-INF/module-hbm.xml</hbmFileName>
                         <implDirName>src/main/java</implDirName>
                         <inputFileName>service.xml</inputFileName>
+                        <mergeModelHintsConfigs>src/main/resources/META-INF/portlet-model-hints.xml</mergeModelHintsConfigs>
                         <modelHintsFileName>src/main/resources/META-INF/portlet-model-hints.xml</modelHintsFileName>
                         <osgiModule>true</osgiModule>
                         <propsUtil>com.liferay.blade.samples.servicebuilder.service.util.PropsUtil</propsUtil>

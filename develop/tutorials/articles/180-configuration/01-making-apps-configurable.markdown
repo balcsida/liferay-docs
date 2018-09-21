@@ -12,7 +12,7 @@ the greatest benefit with the least amount of effort.
 
 **Note:** To quickly see a working application configuration, deploy the
 `configuration-action` [Blade
-sample](https://github.com/liferay/liferay-blade-samples/tree/master/gradle/apps/configuration-action)
+sample](https://github.com/liferay/liferay-blade-samples/tree/7.0/gradle/apps/configuration-action)
 and navigate to System Settings (*Control Panel* &rarr; *Configuration* &rarr;
 *System Settings*). In the Other category, click the *Message display
 configuration* entry.
@@ -75,8 +75,8 @@ First create a Java interface to represent the configuration and its default
 values. Using a Java interface allows for an advanced type system for each
 configuration option. Here is an example of such an interface:
 
-    @Meta.OCD(id = "com.foo.bar.MyAppConfiguration")
-    public interface MyAppConfiguration {
+    @Meta.OCD(id = "com.liferay.docs.exampleconfig.ExampleConfiguration")
+    public interface ExampleConfiguration {
 
         @Meta.AD(
             deflt = "blue",
@@ -472,7 +472,7 @@ the provider:
     scope. These settings are specified by an admin via the System Settings
     application or with an OSGi configuration file.
 
-Here are a couple real world examples from Liferay’s source code:
+Here are a couple real world examples from Liferay's source code:
 
     JournalGroupServiceConfiguration configuration =
         configurationProvider.getGroupConfiguration(
